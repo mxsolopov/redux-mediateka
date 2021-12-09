@@ -1,10 +1,8 @@
 import { combineReducers } from "redux";
-import { cashReducer } from "./cashReducer";
-import { customersReducer } from "./customersReducer";
+import { contentReducer } from "./contentReducer";
 
 const reducer = combineReducers({
-    cash: cashReducer,
-    customers: customersReducer
+    typeOfContent: contentReducer,
 });
 
 export default reducer;
