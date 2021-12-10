@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle, Col, Input } from 'reactstrap';
 import { useDispatch } from 'react-redux';
-import { removeBookAction, editBookAction } from '../actions/actions';
+import { removeItemAction, editItemAction } from '../actions/actions';
 
-const BookCard = ({ name, author, description, id }) => {
+const ContentCard = ({ type, name, performers, time, description, id }) => {
 
     const [isEdit, setIsEdit] = useState(false);
     const dispatch = useDispatch();
 
-    const editBookItem = (params) => {
-        dispatch(editBookAction(params));
+    const editItem = (params) => {
+        dispatch(editItemAction(params));
     };
 
     return (
         <Col>
-            <div className={!isEdit ? '': 'border border-primary rounded'}>
+            <div className={!isEdit ? '' : 'border border-primary rounded'}>
                 <Card className="h-100">
                     <CardBody>
                         {!isEdit ?
@@ -25,7 +25,7 @@ const BookCard = ({ name, author, description, id }) => {
                                 name="name"
                                 type="text"
                                 value={name}
-                                onChange={e => editBookItem({ id: id, prop: "name", value: e.target.value })}
+                                onChange={e => editItem({ id: id, prop: "name", value: e.target.value })}
                                 required
                             />
                         }
@@ -34,15 +34,32 @@ const BookCard = ({ name, author, description, id }) => {
                                 className="mb-2 text-muted"
                                 tag="h6"
                             >
-                                {author}
+                                {performers}
                             </CardSubtitle> :
                             <Input
-                                name="author"
+                                name="performers"
                                 type="text"
-                                value={author}
-                                onChange={e => editBookItem({ id: id, prop: "author", value: e.target.value })}
+                                value={performers}
+                                onChange={e => editItem({ id: id, prop: "performers", value: e.target.value })}
                                 required
                             />
+                        }
+                        {
+                            type !== 'book' ?
+                                !isEdit ?
+                                    <CardSubtitle
+                                        className="mb-2 text-muted"
+                                        tag="div"
+                                    >
+                                        {time}
+                                    </CardSubtitle> :
+                                    <Input
+                                        name="time"
+                                        type="text"
+                                        value={time}
+                                        onChange={e => editItem({ id: id, prop: "time", value: e.target.value })}
+                                        required
+                                    /> : null
                         }
                         {!isEdit ?
                             <CardText>
@@ -52,7 +69,7 @@ const BookCard = ({ name, author, description, id }) => {
                                 name="description"
                                 type="textarea"
                                 value={description}
-                                onChange={e => editBookItem({ id: id, prop: "description", value: e.target.value })}
+                                onChange={e => editItem({ id: id, prop: "description", value: e.target.value })}
                                 required
                             />
                         }
@@ -69,7 +86,7 @@ const BookCard = ({ name, author, description, id }) => {
                                 <Button
                                     size="sm"
                                     outline
-                                    onClick={() => dispatch(removeBookAction(id))}
+                                    onClick={() => dispatch(removeItemAction(id))}
                                 >
                                     Удалить
                                 </Button>
@@ -82,4 +99,4 @@ const BookCard = ({ name, author, description, id }) => {
     );
 };
 
-export default BookCard;
+export default ContentCard;

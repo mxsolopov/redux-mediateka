@@ -1,14 +1,10 @@
 import { combineReducers } from "redux";
+import { typeOfContentReducer } from "./typeOfContentReducer";
 import { contentReducer } from "./contentReducer";
-import { booksReducer } from "./booksReducer";
-import { moviesReducer } from "./moviesReducer";
-import { musicReducer } from "./musicReducer";
 
 const reducer = combineReducers({
-    typeOfContent: contentReducer,
-    books: booksReducer,
-    movies: moviesReducer,
-    music: musicReducer,
+    typeOfContent: typeOfContentReducer,
+    content: contentReducer,
 });
 
 export default reducer;
