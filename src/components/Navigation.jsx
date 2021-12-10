@@ -1,17 +1,15 @@
 import React from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeTypeOfContent } from '../actions/actions';
+import { changeTypeOfContentAction } from '../actions/actions';
 
 const Navigation = () => {
 
     const dispatch = useDispatch();
     const typeOfContent = useSelector(state => state.typeOfContent.typeOfContent);
 
-    console.log(typeOfContent);
-
     const navToggler = (content) => {
-        dispatch(changeTypeOfContent(content));
+        dispatch(changeTypeOfContentAction(content));
     };
 
     return (
