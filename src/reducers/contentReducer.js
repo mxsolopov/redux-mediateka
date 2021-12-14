@@ -8,7 +8,6 @@ export const contentReducer = (state = defaultState, action) => {
     switch (action.type) {
 
         case ADD_ITEM:
-            console.log(action.payload);
             return { ...state, content: [...state.content, action.payload] };
 
         case REMOVE_ITEM:

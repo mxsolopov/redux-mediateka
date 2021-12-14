@@ -7,7 +7,7 @@ import { nanoid } from 'nanoid';
 const ContentForm = () => {
 
     const type = useSelector(state => state.typeOfContent.typeOfContent);
-    const [itemData, setItemData] = useState({ type: type, name: '', performers: '', time: '', description: '', id: nanoid() });
+    const [itemData, setItemData] = useState({name: '', performers: '', time: '', description: '', id: nanoid() });
     const dispatch = useDispatch();
 
     const addItemToStore = (data) => {
@@ -17,7 +17,7 @@ const ContentForm = () => {
     let typeOfContent, performers;
     if (type === 'books') {
         typeOfContent = 'книгу';
-        performers = 'Автор';
+        performers = 'Авторы';
     } else if (type === 'movies') {
         typeOfContent = 'фильм';
         performers = 'Актеры';
@@ -33,8 +33,9 @@ const ContentForm = () => {
             </div>
             <Form onSubmit={(e) => {
                 e.preventDefault();
-                addItemToStore(itemData);
-                setItemData({ type: type, name: '', performers: '', time: '', description: '', id: nanoid() });
+                addItemToStore({...itemData, type: type});
+                setItemData({ name: '', performers: '', time: '', description: '', id: nanoid() });
+                console.log(type);
             }}>
                 <FormGroup>
                     <Label for="name">

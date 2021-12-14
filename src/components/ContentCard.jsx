@@ -3,7 +3,7 @@ import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle, Col, Input }
 import { useDispatch } from 'react-redux';
 import { removeItemAction, editItemAction } from '../actions/actions';
 
-const ContentCard = ({ type, name, performers, time, description, id }) => {
+const ContentCard = ({ type, name, performers, time='', description, id }) => {
 
     const [isEdit, setIsEdit] = useState(false);
     const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const ContentCard = ({ type, name, performers, time, description, id }) => {
                             />
                         }
                         {
-                            type !== 'book' ?
+                            type !== 'books' ?
                                 !isEdit ?
                                     <CardSubtitle
                                         className="mb-2 text-muted"
